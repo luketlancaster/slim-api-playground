@@ -43,7 +43,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
 $app->group('/pins', function(RouteCollectorProxy $group) {
     // $pins = json_decode(file_get_contents(__DIR__ . '/../pins.json'));
 
-    // $group->get('/{id}', function (Request $request, Response $response, $args) use ($pins) {
+    // $group->get('/boards/1', function (Request $request, Response $response, $args) use ($pins) {
     //     $response->getBody()->write(json_encode($pins[$args['id']]));
     //     return $response;
     // });

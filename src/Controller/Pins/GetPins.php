@@ -15,9 +15,17 @@ class GetPins
 
     public function __invoke($request, $response)
     {
+        $queryParams = $request->getQueryParams();
+
+        if ($queryParams && $queryParams['boardId']) {
+            $stmt = $this->db->prepare('select * from pins where board_id = ?');
+            $stmt->execute([$queryParams['boardId']]);
+            $response->getBody()->write(json_encode($stmt->fetchAll()));
+            return $response;
+        }
+
         $stmt = $this->db->prepare('select * from pins');
         $stmt->execute();
-        $response->getBody()->write(json_encode($stmt->fetchAll()));
         return $response;
     }
 }
